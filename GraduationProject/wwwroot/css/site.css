@@ -1,71 +1,294 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
-
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+﻿@font-face {
+    font-family: 'cairo';
+    src: url(../Font/Cairo-Regular.ttf);
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    font-family: 'cairo';
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /*this for navigation*/
+    --dark-blue: #0b0b47;
+    --dark-orange: #FF5733;
+    /*special use*/
+    --mikado-yellow: #08623B;
+    /*main color*/
+    --white: #fff;
+    --balck: #000;
+    --gray: #e7e7e7;
+}
+
+.mydash {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.newcontainer {
+    position: relative;
+    width: 100%;
+}
+
+.navigation::-webkit-scrollbar {
+    width: 10px;
+}
+
+.navigation::-webkit-scrollbar-track {
+    background-color: #f9f9f9;
+}
+
+.navigation::-webkit-scrollbar-thumb {
+    background-color: #0b0b47;
+    border-radius: 0;
+}
+
+    .navigation::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(11, 11, 71, 0.50);
+    }
+
+.navigation {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background: var(--dark-blue);
+    transition: 0.5s;
+    /*overflow: hidden;*/
+    overflow-x: hidden;
+}
+
+    .navigation.active {
+        width: 60px;
+    }
+
+    .navigation ul {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        padding-right:5px;
+    }
+
+        .navigation ul li {
+            position: relative;
+            width: 100%;
+            list-style: none;
+        }
+
+            .navigation ul li a:hover {
+                background: var(--white);
+                color:var(--dark-blue);
+                border-bottom-right-radius:20px;
+                border-top-right-radius:20px;
+            }
+
+            .navigation ul li:nth-child(1) {
+                margin-bottom: 20px;
+            }
+
+                .navigation ul li:nth-child(1):hover {
+                    background: #003147;
+                }
+
+            .navigation ul li a {
+                position: relative;
+                display: block;
+                width: 100%;
+                display: flex;
+                text-decoration: none;
+                color: var(--white);
+            }
+
+                .navigation ul li a .icon {
+                    position: relative;
+                    display: block;
+                    min-width: 60px;
+                    height: 60px;
+                    line-height: 71px;
+                    text-align: center;
+                }
+
+                    .navigation ul li a .icon .fa {
+                        color: var(--dark-orange);
+                        font-size: 24px;
+                    }
+
+                .navigation ul li a .title {
+                    position: relative;
+                    display: block;
+                    padding: 0 10px;
+                    height: 60px;
+                    line-height: 60px;
+                    white-space: nowrap;
+                    font-size: 26px;
+                }
+
+
+
+            /*this for button*/
+            .navigation ul li button {
+                background: transparent;
+                position: relative;
+                display: block;
+                width: 100%;
+                display: flex;
+                text-decoration: none;
+                color: #fff;
+                border: transparent;
+            }
+
+                .navigation ul li button .icon {
+                    position: relative;
+                    display: block;
+                    min-width: 60px;
+                    height: 60px;
+                    line-height: 60px;
+                    text-align: center;
+                }
+
+                    .navigation ul li button .icon .fa {
+                        color: #fff;
+                        font-size: 24px;
+                    }
+
+                .navigation ul li button .title {
+                    position: relative;
+                    display: block;
+                    padding: 0 10px;
+                    height: 60px;
+                    line-height: 60px;
+                    white-space: nowrap;
+                }
+
+.main {
+    position: absolute;
+    width: calc(100% - 300px);
+    right: 300px;
+    min-height: 100vh;
+    background: var(--canary);
+    transition: 0.5s;
+}
+
+    .main.active {
+        width: calc(100% - 60px);
+        right: 60px;
+    }
+
+    .main .topbar {
+        width: 100%;
+        background: var(--dark-purple);
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom:var(--dark-blue) 2px solid;
+    }
+
+.toggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+    .toggle::before {
+        content: '\002630';
+        font-family: fontAwesome;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        list-style: none;
+        line-height: 60px;
+        font-size: 24px;
+        text-align: right;
+        color: var(--dark-blue);
+    }
+
+.search {
+    position: relative;
+    width: 400px;
+    margin: 0 10%;
+}
+
+    .search label {
+        position: relative;
+        width: 100%;
+    }
+
+        .search label input {
+            width: 100%;
+            height: 40px;
+            border-radius: 40px;
+            padding: 5px 20px;
+            padding-right: 35px;
+            outline: none;
+            border: 1px solid rgba(0,0,0,0.2);
+        }
+
+        .search label .fa {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+        }
+
+#leftimage {
+    position: relative;
+    width: 90px;
+    height: 60px;
+}
+/*make it responsive*/
+@media(max-width:992px) {
+    .navigation {
+        right: -300px;
+    }
+
+        .navigation.active {
+            right: 0;
+            width: 300px;
+        }
+
+    .main {
+        width: 100%;
+        right: 0;
+    }
+
+        .main.active {
+            width: calc(100% - 300px);
+            right: 300px;
+        }
+}
+
+@media(max-width:480px) {
+    .navigation {
+        width: 100%;
+        right: -100%;
+        z-index: 1000;
+    }
+
+        .navigation.active {
+            width: 100%;
+            right: 0;
+        }
+
+    .toggle.active {
+        position: fixed;
+        z-index: 10000;
+        left: 7px;
+        right: initial;
+    }
+
+        .toggle.active::before {
+            color: #fff;
+        }
+
+    .main,
+    .main.active {
+        width: 100%;
+        right: 0;
+    }
 }

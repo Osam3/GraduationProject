@@ -1,46 +1,64 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html dir="rtl">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - GraduationProject</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GraduationProject</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+    <div class="mydash">
+        <div class="newcontainer">
+
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><i class="fa fa-code" aria-hidden="true"></i></span>
+                            <span class="title">WHMS</span>
+                        </a>
+                    </li>
+                    <li title="الرئيسية">
+                        <a href="~/Home/Index">
+                            <span class="icon"><i class="fa fas fa-home" aria-hidden="true"></i></span>
+                            <span class="title">الرئيسية</span>
+                        </a>
+                    </li>
+                    <li title="حول الموقع">
+                        <a href="~/Home/About">
+                            <span class="icon"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+                            <span class="title">حول الموقع</span>
+                        </a>
+                    </li>
+
+                    <!--to check if user was sign in or not to show to him the loging or logout-->
+                </ul>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        </div>
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle" onclick="toggleMenu();"></div>
+                <div class="search">
+                    <label>
+                        <input type="text" id="myInput" onkeyup="searchTable()" placeholder="ابحث هنا" />
+                        <i class="fa fa-search"></i>
+                    </label>
+                </div>
+
+                <img src="~/serverimages/animatedlogo.gif" style=" width: 90px; position: relative; height: 60px;" />
+            </div>
+            <div class="container" style="text-align:right;padding-top:20px;">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - GraduationProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/togglemenu.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
