@@ -23,6 +23,7 @@ body {
     --white: #fff;
     --balck: #000;
     --gray: #e7e7e7;
+
 }
 
 .mydash {
@@ -206,7 +207,7 @@ body {
         line-height: 60px;
         font-size: 24px;
         text-align: right;
-        color: var(--dark-blue);
+        color: var(--dark-orange);
     }
 
 .search {
@@ -234,6 +235,7 @@ body {
             position: absolute;
             right: 12px;
             top: 12px;
+            color: var(--dark-orange);
         }
 
 #leftimage {

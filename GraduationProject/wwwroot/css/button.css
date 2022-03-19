@@ -1,0 +1,85 @@
+﻿:root {
+    /*this for navigation*/
+    --dark-blue: #0b0b47;
+    --dark-orange: #FF5733;
+    /*special use*/
+    --mikado-yellow: #08623B;
+    /*main color*/
+    --white: #fff;
+    --black: #000;
+    --gray: #e7e7e7;
+    --red: #b2323d;
+    --black-hover: #171a20;
+    --red-hover: #92474d;
+}
+
+.create-icon-btn {
+    background: var(--dark-orange);
+    border: 1px solid var(--dark-blue);
+    box-shadow: 0px 5px 10px rgba(0,0,0,.2);
+    padding: 10px 20px;
+    color: var(--white);
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+    font-weight: bold;
+    border-radius: 30px;
+    width: auto;
+    text-decoration: none;
+    bottom: 30px;
+    left: 20px;
+    position: fixed;
+    font-size: 20px;
+}
+
+    .create-icon-btn:hover {
+        background: #fff;
+        color: var(--dark-blue);
+        border: 1px solid var(--dark-orange);
+        transform: scale(1.05);
+        text-decoration: none;
+    }
+
+.delete-icon-btn {
+    background: var(--white);
+    border: 1px solid var(--red);
+    box-shadow: 0px 5px 10px rgba(178,50,61,.2);
+    font-size: 16px;
+    color: var(--red);
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+    font-weight: bold;
+    border-radius: 20px;
+    width: auto;
+    text-decoration: none;
+}
+
+    .delete-icon-btn:hover {
+        background: var(--red-hover);
+        color: var(--white);
+        border: 1px solid var(--white);
+        transform: scale(1.05);
+        text-decoration: none;
+    }
+
+.edit-icon-btn {
+    background: var(--white);
+    border: 1px solid var(--black);
+    box-shadow: 0px 5px 10px rgba(0,0,0,.2);
+    font-size: 16px;
+    padding-left: 17px;
+    padding-right: 17px;
+    color: var(--black);
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+    font-weight: bold;
+    border-radius: 20px;
+    width: auto;
+    text-decoration: none;
+}
+    .edit-icon-btn:hover {
+        background: var(--black-hover);
+        color: var(--white);
+        border: 1px solid var(--black);
+        transform: scale(1.05);
+        text-decoration: none;
+    }
