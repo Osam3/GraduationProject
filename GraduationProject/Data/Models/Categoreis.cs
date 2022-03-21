@@ -14,7 +14,7 @@ namespace GraduationProject.Data.Models
         [StringLength(15)]
         public string Name { get; set; }
 
-        [StringLength(7)]
+        [StringLength(3)]
         public string ShortCutName { get; set; }
 
         //Navigation Prop

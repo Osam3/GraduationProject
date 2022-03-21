@@ -11,7 +11,10 @@ namespace GraduationProject.Data.Models
         [Key]
         public int ItemID { get; set; }
 
-        [StringLength(40)]
+        [StringLength(1)]
+        public string  Status { get; set; }
+
+        [StringLength(10)]
         public string BarCode { get; set; }
 
         [StringLength(30)]

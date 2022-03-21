@@ -182,7 +182,7 @@ body {
 
     .main .topbar {
         width: 100%;
-        background: var(--dark-purple);
+        background: var(--white);
         height: 60px;
         display: flex;
         justify-content: space-between;
@@ -207,6 +207,7 @@ body {
         line-height: 60px;
         font-size: 24px;
         text-align: right;
+        font-weight:bold;
         color: var(--dark-orange);
     }
 
@@ -228,14 +229,21 @@ body {
             padding: 5px 20px;
             padding-right: 35px;
             outline: none;
-            border: 1px solid rgba(0,0,0,0.2);
+            border: 1px solid var(--dark-blue);
         }
+        .search label input::placeholder{
+            color:var(--dark-orange);
+            font-weight:800;
+            font-size:22px;
 
+        }
         .search label .fa {
             position: absolute;
             right: 12px;
             top: 12px;
-            color: var(--dark-orange);
+            color: var(--dark-blue);
+            font-weight:bold;
+            font-size:18px;
         }
 
 #leftimage {

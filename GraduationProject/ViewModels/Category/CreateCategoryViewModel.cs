@@ -8,9 +8,11 @@ namespace GraduationProject.ViewModels.Category
 {
     public class CreateCategoryViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="هذا الحقل مطلوب")]
+        [StringLength(30)]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "هذا الحقل مطلوب")]
+        [StringLength(3, MinimumLength = 2,ErrorMessage ="طول الترميز إما 2 أو 3 ")]
         public string ShortcutName { get; set; }
 
         public int? MainCategoryId { get; set; }

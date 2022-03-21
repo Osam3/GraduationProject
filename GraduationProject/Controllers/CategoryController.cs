@@ -21,13 +21,13 @@ namespace GraduationProject.Controllers
         }
         public IActionResult Index()
         {
-            var Categories = _context.Category.Include(c=>c.Category).ToList();
+            var Categories = _context.Category.Include(c => c.Category).ToList();
             return View(Categories);
         }
         [HttpGet]
         public IActionResult Create()
         {
-            ViewData["MainCategory"] = new SelectList(bindListforCategory(),"Value","Text");
+            ViewData["MainCategory"] = new SelectList(bindListforCategory(), "Value", "Text");
             return View();
         }
 
@@ -51,6 +51,12 @@ namespace GraduationProject.Controllers
                     if (checkShortCutName(viewmodel.ShortcutName))
                     {
                         ViewBag.errorMassage = "هذا الترميز موجود بالفعل لصنف آخر";
+                        return View(viewmodel);
+                    }
+                    //check for Category ShortcuntName length
+                    if (checkforCategoryShortcutnameLength(viewmodel.MainCategoryId, viewmodel.Name))
+                    {
+                        ViewBag.errorMassage = "ترميز الصنف الرئيسي 2 بينما ترميز الصنف الفرعي 3";
                         return View(viewmodel);
                     }
                     // so the Category dosen't Has MainCategory
@@ -99,7 +105,7 @@ namespace GraduationProject.Controllers
             {
                 CategoryID = category.CategoryID,
                 Name = category.Name,
-                ShortCutName = category.Name,
+                ShortCutName = category.ShortCutName,
                 MainCategoryId = category.MainCategoryId,
             };
             ViewData["MainCategory"] = new SelectList(bindListforCategory(category.CategoryID), "Value", "Text");
@@ -117,14 +123,14 @@ namespace GraduationProject.Controllers
                 try
                 {
                     //check for Duplicate The CategoryName
-                    if (checkCategoryName(viewModel.Name,id))
+                    if (checkCategoryName(viewModel.Name, id))
                     {
                         ViewBag.errorMassage = "هذا الصنف موجود بالفعل";
                         return View(viewModel);
                     }
 
                     //check for Duplicate The ShortCutName
-                    if (checkShortCutName(viewModel.ShortCutName,id))
+                    if (checkShortCutName(viewModel.ShortCutName, id))
                     {
                         ViewBag.errorMassage = "هذا الترميز موجود بالفعل لصنف آخر";
                         return View(viewModel);
@@ -233,9 +239,9 @@ namespace GraduationProject.Controllers
         private bool checkShortCutName(string shortCut)
         {
             bool check = false;
-            var categoriesShortCutName = _context.Category.Select(x=> new
+            var categoriesShortCutName = _context.Category.Select(x => new
             {
-               categoryshortcutName =  x.ShortCutName
+                categoryshortcutName = x.ShortCutName
             });
 
             foreach (var item in categoriesShortCutName)
@@ -254,10 +260,10 @@ namespace GraduationProject.Controllers
         /// </summary>
         /// <param name="shortCut"></param>
         /// <returns>true if Duplicate otherwise false</returns>
-        private bool checkShortCutName(string shortCut,int id)
+        private bool checkShortCutName(string shortCut, int id)
         {
             bool check = false;
-            var categoriesShortCutName = _context.Category.Where(c=>c.CategoryID!=id).Select(x => new
+            var categoriesShortCutName = _context.Category.Where(c => c.CategoryID != id).Select(x => new
             {
                 categoryshortcutName = x.ShortCutName
             });
@@ -274,6 +280,23 @@ namespace GraduationProject.Controllers
         }
 
 
+        private bool checkforCategoryShortcutnameLength(int? categoryId, string shortCutName)
+        {
+            bool check = false;
+            if (categoryId == null && shortCutName.Length != 2)
+            {
+                // so this category is main category and shortcutname should be 2
+                check = true;
+            }
+            else if (categoryId != null && shortCutName.Length != 3)
+            {
+                // so this category is subcategory and shortcutname should be 3
+                check = true;
+
+            }
+            return check;
+        }
+
         private bool categoryExists(int id) => _context.Category.Any(c => c.CategoryID == id);
 
         /// <summary>
@@ -285,7 +308,7 @@ namespace GraduationProject.Controllers
             List<SelectListItem> list = new List<SelectListItem>();
             list.Add(new SelectListItem { Text = " ", Value = "-1" });
 
-            var category = _context.Category.ToList();
+            var category = _context.Category.Where(c=>c.MainCategoryId==null).ToList();
             foreach (var item in category)
             {
                 list.Add(new SelectListItem { Text = item.Name, Value = item.CategoryID.ToString() });
@@ -301,7 +324,7 @@ namespace GraduationProject.Controllers
             List<SelectListItem> list = new List<SelectListItem>();
             list.Add(new SelectListItem { Text = " ", Value = "-1" });
 
-            var category = _context.Category.Where(c=>c.CategoryID!=id).ToList();
+            var category = _context.Category.Where(c => c.CategoryID != id && c.MainCategoryId==null).ToList();
             foreach (var item in category)
             {
                 list.Add(new SelectListItem { Text = item.Name, Value = item.CategoryID.ToString() });

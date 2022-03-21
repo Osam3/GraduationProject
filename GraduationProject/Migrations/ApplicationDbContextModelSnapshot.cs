@@ -148,8 +148,8 @@ namespace GraduationProject.Migrations
                         .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("ShortCutName")
-                        .HasMaxLength(7)
-                        .HasColumnType("nvarchar(7)");
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
 
                     b.HasKey("CategoryID");
 
@@ -210,8 +210,8 @@ namespace GraduationProject.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("BarCode")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Brand")
                         .HasMaxLength(20)
@@ -235,6 +235,10 @@ namespace GraduationProject.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .HasMaxLength(1)
+                        .HasColumnType("nvarchar(1)");
 
                     b.HasKey("ItemID");
 
